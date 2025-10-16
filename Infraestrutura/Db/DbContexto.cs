@@ -12,6 +12,8 @@ public class DbContexto : DbContext
     }
     public DbSet<Administrador> administradores { get; set; } = default!;
 
+    public DbSet<Veiculo> veiculos { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Administrador>().HasData(
@@ -30,7 +32,7 @@ public class DbContexto : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var stringConexao = _configuracaoAppSettings
-            .GetConnectionString("mysql")?.ToString();
+            .GetConnectionString("MySql")?.ToString();
             if (!string.IsNullOrEmpty(stringConexao))
             {
                 optionsBuilder.UseMySql(
